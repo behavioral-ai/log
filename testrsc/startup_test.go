@@ -1,4 +1,4 @@
-package event2
+package testrsc
 
 import (
 	"fmt"

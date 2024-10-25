@@ -2,42 +2,34 @@ package event2
 
 import (
 	"context"
-	"github.com/advanced-go/events/common"
-	"github.com/advanced-go/events/module"
-	"github.com/advanced-go/events/testrsc"
+	"github.com/advanced-go/common/core"
+	"github.com/advanced-go/common/httpx"
+	"github.com/advanced-go/log/common"
+	"github.com/advanced-go/log/module"
+	"github.com/advanced-go/log/testrsc"
 	"github.com/advanced-go/postgresql/pgxsql"
-	"github.com/advanced-go/stdlib/core"
-	"github.com/advanced-go/stdlib/httpx"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
-const (
-	egressResource  = "egress"
-	ingressResource = "ingress"
-)
-
-func testOverride(ctx context.Context, resource string) context.Context {
-	ex := core.ExchangeOverrideFromContext(ctx)
-	if ex != nil {
-		return ctx
+func testOverride(h http.Header) http.Header {
+	if h == nil {
+		h = make(http.Header)
 	}
-	rsc := testrsc.LOG2EgressEntry
-	if strings.Contains(resource, ingressResource) {
-		rsc = testrsc.LOG2IngressEntry
+	if h.Get(core.XExchangeResponse) == "" && h.Get(core.XExchangeStatus) == "" {
+		h.Add(core.XExchangeResponse, testrsc.LOG2IngressEntry)
 	}
-	return core.NewExchangeOverrideContext(ctx, core.NewExchangeOverride("", rsc, ""))
+	return h
 }
 
-func get[E core.ErrorHandler, T pgxsql.Scanner[T]](ctx context.Context, h http.Header, resource string, values url.Values) (entries []T, status *core.Status) {
+func get[E core.ErrorHandler, T pgxsql.Scanner[T]](ctx context.Context, h http.Header, values url.Values) (entries []T, status *core.Status) {
 	var e E
 
 	if values == nil {
 		return nil, core.StatusNotFound()
 	}
 	// Testing only
-	ctx = testOverride(ctx, resource)
+	h = testOverride(h)
 
 	// Set XFrom so that PostgreSQL logging is correct.
 	h = httpx.SetHeader(h, core.XFrom, module.Authority)

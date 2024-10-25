@@ -3,11 +3,11 @@ package event2
 import (
 	"context"
 	"errors"
-	"github.com/advanced-go/events/common"
-	"github.com/advanced-go/events/module"
+	"github.com/advanced-go/common/core"
+	"github.com/advanced-go/common/httpx"
+	"github.com/advanced-go/log/common"
+	"github.com/advanced-go/log/module"
 	"github.com/advanced-go/postgresql/pgxsql"
-	"github.com/advanced-go/stdlib/core"
-	"github.com/advanced-go/stdlib/httpx"
 	"net/http"
 )
 

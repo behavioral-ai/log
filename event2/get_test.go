@@ -2,7 +2,7 @@ package event2
 
 import (
 	"fmt"
-	"github.com/advanced-go/stdlib/core"
+	"github.com/advanced-go/common/core"
 	"net/url"
 )
 
@@ -11,12 +11,12 @@ func ExampleGetEgress_Test() {
 	//ctx := core.NewExchangeOverrideContext(nil, core.NewExchangeOverride("", testrsc.LOG2EgressEntryTest, ""))
 
 	values.Add(core.RegionKey, "*")
-	entries, status := get[core.Output, Entry](nil, nil, egressResource, values)
+	entries, status := get[core.Output, Entry](nil, nil, values)
 	fmt.Printf("test: get() -> [status:%v] [entries:%v]\n", status, len(entries))
 
 	values.Set(core.RegionKey, "us-west")
 	values.Add(core.SubZoneKey, "dc1")
-	entries, status = get[core.Output, Entry](nil, nil, egressResource, values)
+	entries, status = get[core.Output, Entry](nil, nil, values)
 	fmt.Printf("test: get() -> [status:%v] [entries:%v]\n", status, len(entries))
 
 	//Output:
@@ -30,12 +30,12 @@ func ExampleGetIngress_Test() {
 	//ctx := core.NewExchangeOverrideContext(nil, core.NewExchangeOverride("", testrsc.LOG2IngressEntryTest, ""))
 
 	values.Add(core.RegionKey, "*")
-	entries, status := get[core.Output, Entry](nil, nil, ingressResource, values)
+	entries, status := get[core.Output, Entry](nil, nil, values)
 	fmt.Printf("test: get() -> [status:%v] [entries:%v]\n", status, len(entries))
 
 	values.Set(core.RegionKey, "us-west")
 	values.Add(core.SubZoneKey, "dc1")
-	entries, status = get[core.Output, Entry](nil, nil, ingressResource, values)
+	entries, status = get[core.Output, Entry](nil, nil, values)
 	fmt.Printf("test: get() -> [status:%v] [entries:%v]\n", status, len(entries))
 
 	//Output:

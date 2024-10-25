@@ -11,10 +11,9 @@ import (
 )
 
 const (
-	PkgPath          = "github/advanced-go/events/event1"
-	Route            = "log-events"
-	ingressEntryPath = "log/ingress/entry"
-	egressEntryPath  = "log/egress/entry"
+	PkgPath        = "github/advanced-go/log/event1"
+	Route          = "log-events"
+	eventEntryPath = "event/entry"
 )
 
 // Get - event1 GET
@@ -33,8 +32,8 @@ func httpGet[E core.ErrorHandler](r *http.Request, path string) ([]byte, http.He
 	var e E
 	h2 := httpx.SetHeader(nil, httpx.ContentType, httpx.ContentTypeText)
 	switch path {
-	case ingressEntryPath, egressEntryPath:
-		t, status := get[E, Entry](r.Context(), core.AddRequestId(r.Header), path, r.URL.Query())
+	case eventEntryPath:
+		t, status := get[E, Entry](r.Context(), core.AddRequestId(r.Header), r.URL.Query())
 		if !status.OK() {
 			return nil, h2, status
 		}
@@ -78,9 +77,9 @@ func httpPut[E core.ErrorHandler](r *http.Request, path string, body []Entry) (h
 }
 
 func IngressQuery(ctx context.Context, h http.Header, values url.Values) ([]Entry, *core.Status) {
-	return get[core.Log, Entry](ctx, h, ingressEntryPath, values)
+	return get[core.Log, Entry](ctx, h, values)
 }
 
 func EgressQuery(ctx context.Context, h http.Header, values url.Values) ([]Entry, *core.Status) {
-	return get[core.Log, Entry](ctx, h, egressEntryPath, values)
+	return get[core.Log, Entry](ctx, h, values)
 }
