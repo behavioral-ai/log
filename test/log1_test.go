@@ -1,12 +1,11 @@
 package test
 
 import (
-	http2 "github.com/advanced-go/events/http"
-	"github.com/advanced-go/events/log1"
-	"github.com/advanced-go/events/testrsc"
-	"github.com/advanced-go/stdlib/core"
-	"github.com/advanced-go/stdlib/core/coretest"
-	httpt "github.com/advanced-go/stdlib/httpx/httpxtest"
+	"github.com/advanced-go/common/core"
+	"github.com/advanced-go/common/test"
+	"github.com/advanced-go/log/event1"
+	http2 "github.com/advanced-go/log/http"
+	"github.com/advanced-go/log/testrsc"
 	"net/http"
 	"reflect"
 	"testing"
@@ -19,10 +18,10 @@ func TestLog1(t *testing.T) {
 		resp   *http.Response
 		status *core.Status
 	}{
-		{name: "ingress-get-all", req: httpt.NewRequestTest(testrsc.LOG1IngressGetAllReq, t), resp: httpt.NewResponseTest(testrsc.LOG1IngressGetAllResp, t), status: core.StatusOK()},
-		{name: "egress-get-all", req: httpt.NewRequestTest(testrsc.LOG1EgressGetAllReq, t), resp: httpt.NewResponseTest(testrsc.LOG1EgressGetAllResp, t), status: core.StatusOK()},
-		{name: "egress-get-not-found", req: httpt.NewRequestTest(testrsc.LOG1EgressGetNotFoundReq, t), resp: httpt.NewResponseTest(testrsc.NotFoundResp, t), status: nil},
-		{name: "ingress-put-ok", req: httpt.NewRequestTest(testrsc.LOG1IngressPutReq, t), resp: httpt.NewResponseTest(testrsc.OKResp, t), status: nil},
+		{name: "ingress-get-all", req: test.NewRequestTest(testrsc.LOG1IngressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG1IngressGetAllResp, t), status: core.StatusOK()},
+		{name: "egress-get-all", req: test.NewRequestTest(testrsc.LOG1EgressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG1EgressGetAllResp, t), status: core.StatusOK()},
+		{name: "egress-get-not-found", req: test.NewRequestTest(testrsc.LOG1EgressGetNotFoundReq, t), resp: test.NewResponseTest(testrsc.NotFoundResp, t), status: nil},
+		{name: "ingress-put-ok", req: test.NewRequestTest(testrsc.LOG1IngressPutReq, t), resp: test.NewResponseTest(testrsc.OKResp, t), status: nil},
 
 		//
 	}
@@ -38,10 +37,10 @@ func TestLog1(t *testing.T) {
 				t.Errorf("Exchange() got status code : %v, want status code : %v", resp.StatusCode, tt.resp.StatusCode)
 				success = false
 			}
-			var gotT []log1.Entry
-			var wantT []log1.Entry
+			var gotT []event1.Entry
+			var wantT []event1.Entry
 			if success {
-				gotT, wantT, success = httpt.Deserialize[coretest.Output, []log1.Entry](resp.Body, tt.resp.Body, t)
+				gotT, wantT, success = test.Deserialize[test.Output, []event1.Entry](resp.Body, tt.resp.Body, t)
 			}
 			if success {
 				if !reflect.DeepEqual(gotT, wantT) {

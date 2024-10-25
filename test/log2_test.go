@@ -1,12 +1,12 @@
 package test
 
 import (
-	http2 "github.com/advanced-go/events/http"
-	"github.com/advanced-go/events/log2"
-	"github.com/advanced-go/events/testrsc"
-	"github.com/advanced-go/stdlib/core"
-	"github.com/advanced-go/stdlib/core/coretest"
-	httpt "github.com/advanced-go/stdlib/httpx/httpxtest"
+	"github.com/advanced-go/common/core"
+	"github.com/advanced-go/common/test"
+	"github.com/advanced-go/log/event2"
+	http2 "github.com/advanced-go/log/http"
+	"github.com/advanced-go/log/testrsc"
+	//httpt "github.com/advanced-go/stdlib/httpx/httpxtest"
 	"net/http"
 	"reflect"
 	"testing"
@@ -19,8 +19,8 @@ func TestLog2(t *testing.T) {
 		resp   *http.Response
 		status *core.Status
 	}{
-		{name: "ingress-get-all", req: httpt.NewRequestTest(testrsc.LOG2IngressGetAllReq, t), resp: httpt.NewResponseTest(testrsc.LOG2IngressGetAllResp, t), status: core.StatusOK()},
-		{name: "egress-get-all", req: httpt.NewRequestTest(testrsc.LOG2EgressGetAllReq, t), resp: httpt.NewResponseTest(testrsc.LOG2EgressGetAllResp, t), status: core.StatusOK()},
+		{name: "ingress-get-all", req: test.NewRequestTest(testrsc.LOG2IngressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG2IngressGetAllResp, t), status: core.StatusOK()},
+		{name: "egress-get-all", req: test.NewRequestTest(testrsc.LOG2EgressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG2EgressGetAllResp, t), status: core.StatusOK()},
 
 		//
 	}
@@ -36,10 +36,10 @@ func TestLog2(t *testing.T) {
 				t.Errorf("Exchange() got status code : %v, want status code : %v", resp.StatusCode, tt.resp.StatusCode)
 				success = false
 			}
-			var gotT []log2.Entry
-			var wantT []log2.Entry
+			var gotT []event2.Entry
+			var wantT []event2.Entry
 			if success {
-				gotT, wantT, success = httpt.Deserialize[coretest.Output, []log2.Entry](resp.Body, tt.resp.Body, t)
+				gotT, wantT, success = test.Deserialize[test.Output, []event2.Entry](resp.Body, tt.resp.Body, t)
 			}
 			if success {
 				if !reflect.DeepEqual(gotT, wantT) {

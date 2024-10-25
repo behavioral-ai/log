@@ -10,7 +10,7 @@ import (
 )
 
 func ExamplePut() {
-	entries, _ := jsonx.New[[]Entry](testrsc.LOG1EgressEntry, nil)
+	entries, _ := jsonx.New[[]Entry](testrsc.LOG1IngressEntry, nil)
 
 	h := make(http.Header)
 	h.Add(core.XExchangeStatus, jsonx.StatusTimeoutUri)
