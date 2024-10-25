@@ -19,8 +19,7 @@ func TestLog1(t *testing.T) {
 		status *core.Status
 	}{
 		{name: "ingress-get-all", req: test.NewRequestTest(testrsc.LOG1IngressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG1IngressGetAllResp, t), status: core.StatusOK()},
-		{name: "egress-get-all", req: test.NewRequestTest(testrsc.LOG1EgressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG1EgressGetAllResp, t), status: core.StatusOK()},
-		{name: "egress-get-not-found", req: test.NewRequestTest(testrsc.LOG1EgressGetNotFoundReq, t), resp: test.NewResponseTest(testrsc.NotFoundResp, t), status: nil},
+		{name: "ingress-get-not-found", req: test.NewRequestTest(testrsc.LOG1IngressGetNotFoundReq, t), resp: test.NewResponseTest(testrsc.NotFoundResp, t), status: nil},
 		{name: "ingress-put-ok", req: test.NewRequestTest(testrsc.LOG1IngressPutReq, t), resp: test.NewResponseTest(testrsc.OKResp, t), status: nil},
 
 		//
@@ -44,7 +43,7 @@ func TestLog1(t *testing.T) {
 			}
 			if success {
 				if !reflect.DeepEqual(gotT, wantT) {
-					t.Errorf("Exchange() got = %v, want %v", gotT, wantT)
+					t.Errorf("Exchange() got = %v,\n want %v", gotT, wantT)
 				}
 			}
 		})

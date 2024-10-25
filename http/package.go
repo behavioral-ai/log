@@ -16,7 +16,7 @@ const (
 	ver1    = "v1"
 	ver2    = "v2"
 
-	log                 = "log"
+	event               = "event"
 	healthLivenessPath  = "health/liveness"
 	healthReadinessPath = "health/readiness"
 	versionPath         = "version"
@@ -44,7 +44,7 @@ func Exchange(r *http.Request) (*http.Response, *core.Status) {
 	}
 	core.AddRequestId(r.Header)
 	switch p.Resource {
-	case log:
+	case event:
 		resp, status1 := logExchange(r, p)
 		resp.Header.Add(core.XRoute, event1.Route)
 		return resp, status1

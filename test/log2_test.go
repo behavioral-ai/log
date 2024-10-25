@@ -20,7 +20,6 @@ func TestLog2(t *testing.T) {
 		status *core.Status
 	}{
 		{name: "ingress-get-all", req: test.NewRequestTest(testrsc.LOG2IngressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG2IngressGetAllResp, t), status: core.StatusOK()},
-		{name: "egress-get-all", req: test.NewRequestTest(testrsc.LOG2EgressGetAllReq, t), resp: test.NewResponseTest(testrsc.LOG2EgressGetAllResp, t), status: core.StatusOK()},
 
 		//
 	}

@@ -60,7 +60,7 @@
     "cc": "TO"
   },
   {
-    "customer-id": "C010",
+    "customer-id": "C001",
     "start-time":"2024-06-03T18:29:16.0447249Z",
     "duration":100,
     "traffic":"ingress",
@@ -90,7 +90,7 @@
     "cc": "RL"
   },
   {
-    "customer-id": "D003",
+    "customer-id": "C002",
     "start-time":"2024-06-03T18:29:16.0450098Z",
     "duration":500,
     "traffic":"ingress",

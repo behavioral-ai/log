@@ -1,3 +1,0 @@
-GET /github/advanced-go/log:v2/event/entry?region=* HTTP/1.1
-X-Exchange-Response: file:///f:/files/log2/ingress-entry.json
-

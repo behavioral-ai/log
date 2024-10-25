@@ -10,11 +10,12 @@ import (
 )
 
 func ExamplePut() {
-	entries, _ := jsonx.New[[]Entry](testrsc.LOG2EgressEntry, nil)
+	entries, _ := jsonx.New[[]Entry](testrsc.LOG2IngressEntry, nil)
 
 	//ex := core.NewExchangeOverride("", "", json.StatusTimeoutUri)
 	//ctx := core.NewExchangeOverrideContext(nil, ex)
 	h := make(http.Header)
+	h.Set(core.XExchangeStatus, jsonx.StatusTimeoutUri)
 	_, status := put[core.Output, Entry](context.Background(), h, entries)
 	fmt.Printf("test: put() -> [status:%v]\n", status)
 

@@ -2,7 +2,6 @@ PUT /github/advanced-go/log:v1/event/entry HTTP/1.1
 Content-Type: application/json
 X-Exchange-Status: file:///f:/files/common/status-200.json
 
-
 [
   {
     "customer-id": "C010",
