@@ -48,12 +48,11 @@ func TestLog1(t *testing.T) {
 			if ok {
 				for i := 0; i < len(wantT); i++ {
 					if !reflect.DeepEqual(gotT[i], wantT[i]) {
-						t.Errorf("\ngot content = %v,\nwant content = %v\n", gotT, wantT)
+						t.Errorf("\ngot content  = %v,\nwant content = %v\n", gotT[i], wantT[i])
 						ok = false
 					}
 				}
 			}
-
 		})
 	}
 }

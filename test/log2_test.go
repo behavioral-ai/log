@@ -40,9 +40,16 @@ func TestLog2(t *testing.T) {
 			if ok {
 				gotT, wantT, ok = test.Deserialize[test.Output, []event2.Entry](resp.Body, tt.resp.Body, t)
 			}
+			if ok && len(gotT) != len(wantT) {
+				t.Errorf("got length : %v, want length : %v", len(gotT), len(wantT))
+				ok = false
+			}
 			if ok {
-				if !reflect.DeepEqual(gotT, wantT) {
-					t.Errorf("Exchange() got = %v, want %v", gotT, wantT)
+				for i := 0; i < len(wantT); i++ {
+					if !reflect.DeepEqual(gotT[i], wantT[i]) {
+						t.Errorf("\ngot content  = %v,\nwant content = %v\n", gotT[i], wantT[i])
+						ok = false
+					}
 				}
 			}
 		})
