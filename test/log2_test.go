@@ -24,23 +24,23 @@ func TestLog2(t *testing.T) {
 		//
 	}
 	for _, tt := range tests {
-		success := true
+		ok := true
 		t.Run(tt.name, func(t *testing.T) {
 			resp, status := http2.Exchange(tt.req)
 			if tt.status != nil && status.Code != tt.status.Code {
 				t.Errorf("Exchange() got status : %v, want status : %v, error : %v", status.Code, tt.status.Code, status.Err)
-				success = false
+				ok = false
 			}
-			if success && resp.StatusCode != tt.resp.StatusCode {
+			if ok && resp.StatusCode != tt.resp.StatusCode {
 				t.Errorf("Exchange() got status code : %v, want status code : %v", resp.StatusCode, tt.resp.StatusCode)
-				success = false
+				ok = false
 			}
 			var gotT []event2.Entry
 			var wantT []event2.Entry
-			if success {
-				gotT, wantT, success = test.Deserialize[test.Output, []event2.Entry](resp.Body, tt.resp.Body, t)
+			if ok {
+				gotT, wantT, ok = test.Deserialize[test.Output, []event2.Entry](resp.Body, tt.resp.Body, t)
 			}
-			if success {
+			if ok {
 				if !reflect.DeepEqual(gotT, wantT) {
 					t.Errorf("Exchange() got = %v, want %v", gotT, wantT)
 				}

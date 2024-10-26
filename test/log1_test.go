@@ -25,27 +25,35 @@ func TestLog1(t *testing.T) {
 		//
 	}
 	for _, tt := range tests {
-		success := true
+		ok := true
 		t.Run(tt.name, func(t *testing.T) {
 			resp, status := http2.Exchange(tt.req)
 			if tt.status != nil && status.Code != tt.status.Code {
-				t.Errorf("Exchange() got status : %v, want status : %v, error : %v", status.Code, tt.status.Code, status.Err)
-				success = false
+				t.Errorf("got status : %v, want status : %v, error : %v", status.Code, tt.status.Code, status.Err)
+				ok = false
 			}
-			if success && resp.StatusCode != tt.resp.StatusCode {
-				t.Errorf("Exchange() got status code : %v, want status code : %v", resp.StatusCode, tt.resp.StatusCode)
-				success = false
+			if ok && resp.StatusCode != tt.resp.StatusCode {
+				t.Errorf("got status code : %v, want status code : %v", resp.StatusCode, tt.resp.StatusCode)
+				ok = false
 			}
 			var gotT []event1.Entry
 			var wantT []event1.Entry
-			if success {
-				gotT, wantT, success = test.Deserialize[test.Output, []event1.Entry](resp.Body, tt.resp.Body, t)
+			if ok {
+				gotT, wantT, ok = test.Deserialize[test.Output, []event1.Entry](resp.Body, tt.resp.Body, t)
 			}
-			if success {
-				if !reflect.DeepEqual(gotT, wantT) {
-					t.Errorf("Exchange() got = %v,\n want %v", gotT, wantT)
+			if ok && len(gotT) != len(wantT) {
+				t.Errorf("got length : %v, want length : %v", len(gotT), len(wantT))
+				ok = false
+			}
+			if ok {
+				for i := 0; i < len(wantT); i++ {
+					if !reflect.DeepEqual(gotT[i], wantT[i]) {
+						t.Errorf("\ngot content = %v,\nwant content = %v\n", gotT, wantT)
+						ok = false
+					}
 				}
 			}
+
 		})
 	}
 }
