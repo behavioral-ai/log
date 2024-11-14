@@ -36,6 +36,6 @@ func GetProfile(ctx context.Context) (*Profile, *core.Status) {
 
 */
 
-func Get(ctx context.Context, origin core.Origin) (Entry, *core.Status) {
+func Query(ctx context.Context, origin core.Origin) (Entry, *core.Status) {
 	return Entry{}, core.StatusOK()
 }
