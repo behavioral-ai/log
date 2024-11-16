@@ -6,36 +6,33 @@ import (
 )
 
 const (
-	PkgPath = "github/advanced-go/log/timeseries"
-	Route   = "timeseries"
+	PkgPath       = "github/advanced-go/log/timeseries"
+	Route         = "timeseries"
+	centralRegion = "us-central"
+	westRegion    = "us-west"
 )
 
-//type TimeUTC time.Time
-
-/*
-// PercentileThresholdSLO - ingress host, pre-calculated percentile thresholds
-func PercentileThresholdSLO(ctx context.Context, origin core.Origin) (PercentileThreshold, *core.Status) {
-	return NewPercentileThreshold(), core.StatusOK()
-}
-
-// PercentileThresholdQuery - ingress host, queryable percentile thresholds
-func PercentileThresholdQuery(ctx context.Context, origin core.Origin, from, to TimeUTC) (PercentileThreshold, *core.Status) {
-	return NewPercentileThreshold(), core.StatusOK()
-}
-
-// StatusCodeThresholdQuery - egress route, queryable status code thresholds
-func StatusCodeThresholdQuery(ctx context.Context, origin core.Origin, from, to TimeUTC, statusCodes string) (StatusCodeThreshold, *core.Status) {
-	return NewStatusCodeThreshold(), core.StatusOK()
-}
-
-// GetProfile - retrieve traffic profile
-func GetProfile(ctx context.Context) (*Profile, *core.Status) {
-	return NewProfile(), core.StatusOK()
-}
-
-
-*/
-
 func Query(ctx context.Context, origin core.Origin) (Entry, *core.Status) {
-	return Entry{}, core.StatusOK()
+	switch origin.Region {
+	case centralRegion:
+		if centralIndex >= len(centralData) {
+			return Entry{}, core.StatusNotFound()
+		}
+		e := centralData[centralIndex]
+		centralIndex++
+		return e, core.StatusOK()
+	case westRegion:
+		if westIndex >= len(westData) {
+			return Entry{}, core.StatusNotFound()
+		}
+		e := westData[westIndex]
+		westIndex++
+		return e, core.StatusOK()
+	}
+	return Entry{}, core.StatusNotFound()
+}
+
+func Reset() {
+	centralIndex = 0
+	westIndex = 0
 }
