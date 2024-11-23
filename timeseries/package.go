@@ -8,17 +8,17 @@ import (
 const (
 	PkgPath    = "github/advanced-go/log/timeseries"
 	Route      = "timeseries"
-	WestRegion = "us-west1"
-	WestZoneA  = "us-west1-a"
-	WestZoneB  = "us-west1-b"
+	WestRegion = "us-west"
+	WestZoneA  = "w-a"
+	WestZoneB  = "w-b"
 
-	CentralRegion = "us-central1"
-	CentralZoneA  = "us-central1-a"
-	CentralZoneB  = "us-central1-b"
+	CentralRegion = "us-central"
+	CentralZoneA  = "c-a"
+	CentralZoneB  = "c-b"
 
-	EastRegion = "us-east1"
-	EastZoneA  = "us-east1-a"
-	EastZoneB  = "us-east1-b"
+	EastRegion = "us-east"
+	EastZoneA  = "e-a"
+	EastZoneB  = "e-b"
 )
 
 func Query(ctx context.Context, origin core.Origin) (Entry, *core.Status) {
