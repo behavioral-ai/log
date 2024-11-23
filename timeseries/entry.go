@@ -18,22 +18,22 @@ type Entry struct {
 var (
 	westAIndex   = 0
 	westAService = []Entry{
-		{Origin: core.Origin{Region: WestRegion, Zone: WestZoneA, Host: "west-a-host1.com"}, Latency: 1500, Gradient: 5},
+		{Origin: core.Origin{Region: WestRegion, Zone: WestZoneA, Host: "host1.com"}, Latency: 1500, Gradient: 5},
 	}
 
 	westBIndex   = 0
 	westBService = []Entry{
-		{Origin: core.Origin{Region: WestRegion, Zone: WestZoneB, Host: "west-b-host2.com"}, Latency: 1000, Gradient: 45},
+		{Origin: core.Origin{Region: WestRegion, Zone: WestZoneB, Host: "host2.com"}, Latency: 1000, Gradient: 45},
 	}
 
 	centralAIndex   = 0
 	centralAService = []Entry{
-		{Origin: core.Origin{Region: CentralRegion, Zone: CentralZoneA, Host: "central-a-host1.com"}, Latency: 2000, Gradient: 80},
+		{Origin: core.Origin{Region: CentralRegion, Zone: CentralZoneA, Host: "host3.com"}, Latency: 2000, Gradient: 80},
 	}
 
 	centralBIndex   = 0
 	centralBService = []Entry{
-		{Origin: core.Origin{Region: CentralRegion, Zone: CentralZoneB, Host: "central-b-host1.com"}, Latency: 1750, Gradient: 0},
+		{Origin: core.Origin{Region: CentralRegion, Zone: CentralZoneB, Host: "host4.com"}, Latency: 1750, Gradient: 0},
 	}
 )
 
