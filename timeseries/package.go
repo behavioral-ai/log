@@ -6,33 +6,38 @@ import (
 )
 
 const (
-	PkgPath       = "github/advanced-go/log/timeseries"
-	Route         = "timeseries"
-	centralRegion = "us-central"
-	westRegion    = "us-west"
+	PkgPath    = "github/advanced-go/log/timeseries"
+	Route      = "timeseries"
+	WestRegion = "us-west1"
+	WestZoneA  = "us-west1-a"
+	WestZoneB  = "us-west1-b"
+
+	CentralRegion = "us-central1"
+	CentralZoneA  = "us-central1-a"
+	CentralZoneB  = "us-central1-b"
+
+	EastRegion = "us-east1"
+	EastZoneA  = "us-east1-a"
+	EastZoneB  = "us-east1-b"
 )
 
 func Query(ctx context.Context, origin core.Origin) (Entry, *core.Status) {
-	switch origin.Region {
-	case centralRegion:
-		if centralIndex >= len(centralData) {
-			return Entry{}, core.StatusNotFound()
-		}
-		e := centralData[centralIndex]
-		centralIndex++
-		return e, core.StatusOK()
-	case westRegion:
-		if westIndex >= len(westData) {
-			return Entry{}, core.StatusNotFound()
-		}
-		e := westData[westIndex]
-		westIndex++
-		return e, core.StatusOK()
+	switch origin.Zone {
+	case CentralZoneA:
+		return entry(&centralAIndex, centralAService)
+	case CentralZoneB:
+		return entry(&centralBIndex, centralBService)
+	case WestZoneA:
+		return entry(&westAIndex, westAService)
+	case WestZoneB:
+		return entry(&westBIndex, westBService)
 	}
 	return Entry{}, core.StatusNotFound()
 }
 
 func Reset() {
-	centralIndex = 0
-	westIndex = 0
+	centralAIndex = 0
+	centralBIndex = 0
+	westAIndex = 0
+	westBIndex = 0
 }
