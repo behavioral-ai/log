@@ -20,7 +20,7 @@ func put[E core.ErrorHandler, T pgxsql.Scanner[T]](ctx context.Context, h http.H
 		status = core.NewStatusError(core.StatusInvalidContent, errors.New("error: no entries found"))
 		return nil, status
 	}
-	h = httpx.SetHeader(h, core.XFrom, module.Authority)
+	h = httpx.SetHeader(h, core.XFrom, module.Domain)
 	_, status = pgxsql.InsertT[T](ctx, h, common.AccessLogResource, common.AccessLogInsert, body)
 	if !status.OK() {
 		e.Handle(status.WithRequestId(h))

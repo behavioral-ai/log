@@ -32,7 +32,7 @@ func get[E core.ErrorHandler, T pgxsql.Scanner[T]](ctx context.Context, h http.H
 	h = testOverride(h)
 
 	// Set XFrom so that PostgreSQL logging is correct.
-	h = httpx.SetHeader(h, core.XFrom, module.Authority)
+	h = httpx.SetHeader(h, core.XFrom, module.Domain)
 	entries, status = pgxsql.QueryT[T](ctx, h, common.AccessLogResource, common.AccessLogSelect, values)
 	if !status.OK() {
 		e.Handle(status.WithRequestId(h))

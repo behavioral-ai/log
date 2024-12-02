@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	versionFmt   = "{\n \"version\": \"%v\"\n}"
-	authorityFmt = "{\n \"authority\": \"%v\"\n}"
+	versionFmt = "{\n \"version\": \"%v\"\n}"
+	domainFmt  = "{\n \"domain\": \"%v\"\n}"
 )
 
 func NewVersionResponse(version string) *http.Response {
@@ -18,8 +18,8 @@ func NewVersionResponse(version string) *http.Response {
 	return resp
 }
 
-func NewAuthorityResponse(authority string) *http.Response {
-	content := fmt.Sprintf(authorityFmt, authority)
-	resp, _ := httpx.NewResponse(http.StatusOK, httpx.SetHeader(nil, core.XAuthority, authority), content)
+func NewDomainResponse(domain string) *http.Response {
+	content := fmt.Sprintf(domainFmt, domain)
+	resp, _ := httpx.NewResponse(http.StatusOK, httpx.SetHeader(nil, core.XDomain, domain), content)
 	return resp
 }

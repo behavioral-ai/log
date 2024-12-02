@@ -22,17 +22,17 @@ func ExampleExchange_Invalid() {
 
 	//Output:
 	//test: Exchange(nil) -> [status:Bad Request] [status-code:400]
-	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, authority does not match: "/search" "github/advanced-go/log"]] [status-code:400]
-	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, path only contains an authority: "/github/advanced-go/log"]] [status-code:400]
+	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, domain does not match: "/search" "github/advanced-go/log"]] [status-code:400]
+	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, path only contains a domain: "/github/advanced-go/log"]] [status-code:400]
 
 }
 
-func ExampleExchange_Authority() {
-	r, _ := http.NewRequest("", "http://localhost:8083/github/advanced-go/log:authority", nil)
+func ExampleExchange_Domain() {
+	r, _ := http.NewRequest("", "http://localhost:8083/github/advanced-go/log:domain", nil)
 	resp, status := Exchange(r)
 	if status.OK() {
 		//buf, _ := io.ReadAll(resp.Body, nil)
-		fmt.Printf("test: Exchange(r) -> [status:%v] [status-code:%v] [%v]\n", status, resp.StatusCode, resp.Header.Get(core.XAuthority))
+		fmt.Printf("test: Exchange(r) -> [status:%v] [status-code:%v] [%v]\n", status, resp.StatusCode, resp.Header.Get(core.XDomain))
 	}
 
 	//Output:

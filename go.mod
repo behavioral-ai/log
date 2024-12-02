@@ -3,7 +3,7 @@ module github.com/advanced-go/log
 go 1.21.4
 
 require (
-	github.com/advanced-go/common v0.0.0-20241025164522-ddf93f45af1c
+	github.com/advanced-go/common v0.0.0-20241202184712-a3b39dcb9a80
 	github.com/advanced-go/postgresql v0.0.0-20241025174117-cd787a4bd128
 )
 

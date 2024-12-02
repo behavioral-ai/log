@@ -20,11 +20,11 @@ const (
 	healthLivenessPath  = "health/liveness"
 	healthReadinessPath = "health/readiness"
 	versionPath         = "version"
-	authorityPath       = "authority"
+	domainPath          = "domain"
 )
 
 var (
-	authorityResponse = NewAuthorityResponse(module.Authority)
+	domainResponse = NewDomainResponse(module.Domain)
 )
 
 // Exchange - HTTP exchange function
@@ -36,7 +36,7 @@ func Exchange(r *http.Request) (*http.Response, *core.Status) {
 		status := core.NewStatusError(http.StatusBadRequest, errors.New("request is nil"))
 		return httpx.NewResponse(status.HttpCode(), h2, status.Err)
 	}
-	p, err := uri.ValidateURL(r.URL, module.Authority)
+	p, err := uri.ValidateURL(r.URL, module.Domain)
 	if err != nil {
 		status := core.NewStatusError(http.StatusBadRequest, err)
 		resp1, _ := httpx.NewResponse(status.HttpCode(), h2, status.Err)
@@ -51,8 +51,8 @@ func Exchange(r *http.Request) (*http.Response, *core.Status) {
 	case versionPath:
 		resp, status1 := NewVersionResponse(module.Version), core.StatusOK()
 		return resp, status1
-	case authorityPath:
-		resp, status1 := authorityResponse, core.StatusOK()
+	case domainPath:
+		resp, status1 := domainResponse, core.StatusOK()
 		return resp, status1
 	case healthReadinessPath, healthLivenessPath:
 		return httpx.NewHealthResponseOK(), core.StatusOK()

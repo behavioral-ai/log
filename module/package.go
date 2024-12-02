@@ -1,8 +1,8 @@
 package module
 
 const (
-	Authority = "github/advanced-go/log"
-	Version   = "2.2.2"
+	Domain  = "github/advanced-go/log"
+	Version = "2.2.2"
 )
 
 // Configuration keys used on startup for map values

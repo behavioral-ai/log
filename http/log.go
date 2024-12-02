@@ -17,7 +17,7 @@ func logExchange(r *http.Request, p *uri.Parsed) (*http.Response, *core.Status) 
 	h2.Add(httpx.ContentType, httpx.ContentTypeText)
 
 	if p == nil {
-		p1, err := uri.ValidateURL(r.URL, module.Authority)
+		p1, err := uri.ValidateURL(r.URL, module.Domain)
 		if err != nil {
 			return httpx.NewResponse(http.StatusBadRequest, h2, err)
 		}
