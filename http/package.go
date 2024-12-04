@@ -3,16 +3,16 @@ package http
 import (
 	"errors"
 	"fmt"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/httpx"
-	"github.com/advanced-go/common/uri"
-	"github.com/advanced-go/log/event1"
-	"github.com/advanced-go/log/module"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/httpx"
+	"github.com/behavioral-ai/core/uri"
+	"github.com/behavioral-ai/log/event1"
+	"github.com/behavioral-ai/log/module"
 	"net/http"
 )
 
 const (
-	PkgPath = "github/advanced-go/log/http"
+	PkgPath = "github/behavioral-ai/log/http"
 	ver1    = "v1"
 	ver2    = "v2"
 

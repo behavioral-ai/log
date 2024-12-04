@@ -3,9 +3,9 @@ package event1
 import (
 	"context"
 	"fmt"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/jsonx"
-	"github.com/advanced-go/log/testrsc"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/jsonx"
+	"github.com/behavioral-ai/log/testrsc"
 	"net/http"
 )
 

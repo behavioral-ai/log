@@ -1,12 +1,12 @@
 package test
 
 import (
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/test"
-	"github.com/advanced-go/log/event2"
-	http2 "github.com/advanced-go/log/http"
-	"github.com/advanced-go/log/testrsc"
-	//httpt "github.com/advanced-go/stdlib/httpx/httpxtest"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/test"
+	"github.com/behavioral-ai/log/event2"
+	http2 "github.com/behavioral-ai/log/http"
+	"github.com/behavioral-ai/log/testrsc"
+	//httpt "github.com/behavioral-ai/stdlib/httpx/httpxtest"
 	"net/http"
 	"reflect"
 	"testing"

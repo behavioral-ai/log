@@ -1,7 +1,7 @@
 package module
 
 const (
-	Domain  = "github/advanced-go/log"
+	Domain  = "github/behavioral-ai/log"
 	Version = "2.2.2"
 )
 

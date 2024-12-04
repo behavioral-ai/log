@@ -3,11 +3,11 @@ package event1
 import (
 	"context"
 	"errors"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/httpx"
-	"github.com/advanced-go/log/common"
-	"github.com/advanced-go/log/module"
-	"github.com/advanced-go/postgresql/pgxsql"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/httpx"
+	"github.com/behavioral-ai/log/common"
+	"github.com/behavioral-ai/log/module"
+	"github.com/behavioral-ai/postgres/pgxsql"
 	"net/http"
 )
 

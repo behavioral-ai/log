@@ -1,7 +1,7 @@
 package testrsc
 
 const (
-	PkgPath = "github/advanced-go/log/testrsc"
+	PkgPath = "github/behavioral-ai/log/testrsc"
 )
 const (
 	commonBasePath = "file:///f:/files/common"

@@ -3,15 +3,15 @@ package event2
 import (
 	"context"
 	"errors"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/httpx"
-	"github.com/advanced-go/common/jsonx"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/httpx"
+	"github.com/behavioral-ai/core/jsonx"
 	"net/http"
 	"net/url"
 )
 
 const (
-	PkgPath        = "github/advanced-go/log/event2"
+	PkgPath        = "github/behavioral-ai/log/event2"
 	Route          = "log-events"
 	eventEntryPath = "event/entry"
 )

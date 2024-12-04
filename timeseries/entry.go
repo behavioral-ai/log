@@ -1,6 +1,6 @@
 package timeseries
 
-import "github.com/advanced-go/common/core"
+import "github.com/behavioral-ai/core/core"
 
 const (
 	westAZone    = "us-west1-a"

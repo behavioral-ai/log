@@ -2,9 +2,9 @@ package http
 
 import (
 	"fmt"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/jsonx"
-	"github.com/advanced-go/log/event1"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/jsonx"
+	"github.com/behavioral-ai/log/event1"
 	"net/http"
 )
 
@@ -16,19 +16,19 @@ func ExampleExchange_Invalid() {
 	resp, status = Exchange(req)
 	fmt.Printf("test: Exchange(nil) -> [status:%v] [status-code:%v]\n", status, resp.StatusCode)
 
-	req, _ = http.NewRequest("", "http://www.google.com/github/advanced-go/log", nil)
+	req, _ = http.NewRequest("", "http://www.google.com/github/behavioral-ai/log", nil)
 	resp, status = Exchange(req)
 	fmt.Printf("test: Exchange(nil) -> [status:%v] [status-code:%v]\n", status, resp.StatusCode)
 
 	//Output:
 	//test: Exchange(nil) -> [status:Bad Request] [status-code:400]
-	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, domain does not match: "/search" "github/advanced-go/log"]] [status-code:400]
-	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, path only contains a domain: "/github/advanced-go/log"]] [status-code:400]
+	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, domain does not match: "/search" "github/behavioral-ai/log"]] [status-code:400]
+	//test: Exchange(nil) -> [status:Bad Request [error: invalid URI, path only contains a domain: "/github/behavioral-ai/log"]] [status-code:400]
 
 }
 
 func ExampleExchange_Domain() {
-	r, _ := http.NewRequest("", "http://localhost:8083/github/advanced-go/log:domain", nil)
+	r, _ := http.NewRequest("", "http://localhost:8083/github/behavioral-ai/log:domain", nil)
 	resp, status := Exchange(r)
 	if status.OK() {
 		//buf, _ := io.ReadAll(resp.Body, nil)
@@ -36,12 +36,12 @@ func ExampleExchange_Domain() {
 	}
 
 	//Output:
-	//test: Exchange(r) -> [status:OK] [status-code:200] [github/advanced-go/log]
+	//test: Exchange(r) -> [status:OK] [status-code:200] [github/behavioral-ai/log]
 
 }
 
 func _ExampleExchange_Timeseries_dbClient_Error() {
-	uri := "http://localhost:8081/github/advanced-go/observation:v1/timeseries/egress?region=*"
+	uri := "http://localhost:8081/github/behavioral-ai/observation:v1/timeseries/egress?region=*"
 	req, _ := http.NewRequest(http.MethodGet, uri, nil)
 
 	resp, status := Exchange(req)

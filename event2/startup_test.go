@@ -2,7 +2,7 @@ package event2
 
 import (
 	"fmt"
-	"github.com/advanced-go/common/host"
+	"github.com/behavioral-ai/core/host"
 )
 
 func ExampleStartupPing() {

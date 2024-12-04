@@ -3,8 +3,8 @@ package event2
 import (
 	"errors"
 	"fmt"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/log/common"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/log/common"
 	"time"
 )
 

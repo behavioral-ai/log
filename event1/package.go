@@ -3,9 +3,9 @@ package event1
 import (
 	"context"
 	"errors"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/httpx"
-	"github.com/advanced-go/common/jsonx"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/httpx"
+	"github.com/behavioral-ai/core/jsonx"
 	"net/http"
 	"net/url"
 )

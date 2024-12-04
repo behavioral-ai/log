@@ -2,7 +2,7 @@ package testrsc
 
 import (
 	"embed"
-	"github.com/advanced-go/common/iox"
+	"github.com/behavioral-ai/core/iox"
 )
 
 //go:embed files

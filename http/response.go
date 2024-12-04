@@ -2,8 +2,8 @@ package http
 
 import (
 	"fmt"
-	"github.com/advanced-go/common/core"
-	"github.com/advanced-go/common/httpx"
+	"github.com/behavioral-ai/core/core"
+	"github.com/behavioral-ai/core/httpx"
 	"net/http"
 )
 

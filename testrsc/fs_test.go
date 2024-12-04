@@ -2,7 +2,7 @@ package testrsc
 
 import (
 	"fmt"
-	"github.com/advanced-go/common/iox"
+	"github.com/behavioral-ai/core/iox"
 )
 
 func ExampleReadFile() {
