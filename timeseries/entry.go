@@ -13,6 +13,7 @@ type Entry struct {
 	Origin   core.Origin `json:"origin"`
 	Latency  int         `json:"latency"`  // Milliseconds for a given percentile
 	Gradient int         `json:"gradient"` // Rate of change
+	RPS      int         `json:"rps"`      // Requests per second
 }
 
 var (
